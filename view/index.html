@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6-OOP </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-center  ">Quản lý học viện nghiên cứu 
+            giảng dạy</h1>
+        <div >
+                <div class="button">
+                    <button class="btn btn-primary" id="btnThem" data-toggle="modal" data-target="#myModal">ADD
+                        </button>
+                </div>
+                <div >
+                    <select id="phanLoai" onchange="typeKH()">
+                        <option value="ALL">ALL</option>
+                        <option value="Student">Student</option>
+                        <option value="Staff">Staff</option>
+                        <option value="Customer">Customer</option>
+                    </select>
+                </div>
+        </div>
+        <div class="up-down  my-3">
+            <select id="upAndDown" onchange="sapXep()" class="px-3 py-2 ">
+                <option value="Up">Sắp xếp Họ-Tên tăng dần </option>
+                <option value="Down">Sắp xếp Họ-Tên giảm dần </option>
+            </select>
+        </div>
+        <div class="card text-center" id="cardItem1">
+            <!-- Header -->
+            <div class="card-header myCardHeader">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center ">Quản lý Học Sinh/Sinh Viên</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body -->
+            <div class="card-body">
+
+                <table class="table table-bordered table-hover myTable">
+                    <thead>
+                        <tr>
+                            <th class="nowrap">
+                                <span class="mr-1">ID</span>
+                            </th>
+                            <th>Họ và tên</th>
+                            <th>Email</th>
+                            <th>Địa Chỉ</th>
+                            <th>Điểm Trung Bình</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableDanhSachStudents">
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="card text-center my-5" id="cardItem2">
+            <!-- Header -->
+            <div class="card-header myCardHeader ">
+
+                <div class="col-md-12">
+                    <h3 class="text-center">Quản lý Nhân Viên</h3>
+                </div>
+
+            </div>
+
+            <!-- Body -->
+            <div class="card-body">
+
+                <table class="table table-bordered table-hover myTable">
+                    <thead >
+                        <tr>
+                            <th class="nowrap">
+                                <span class="mr-1">ID</span>
+
+                            </th>
+                            <th>Họ và tên</th>
+                            <th>Email</th>
+                            <th>Địa Chỉ</th>
+                            <th>Lương</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableDanhSachStaff">
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="card text-center" id="cardItem3">
+            <!-- Header -->
+            <div class="card-header myCardHeader">
+
+                <div class="col-md-12">
+                    <h3 class="text-center">Quản lý Người Dùng</h3>
+                </div>
+
+            </div>
+
+            <!-- Body -->
+            <div class="card-body">
+
+                <table class="table table-bordered table-hover myTable">
+                    <thead >
+                        <tr>
+                            <th class="nowrap">
+                                <span class="mr-1">ID</span>
+
+                            </th>
+                            <th>Họ và tên</th>
+                            <th>Email</th>
+                            <th>Địa Chỉ</th>
+                            <th>Tên Công Ty</th>
+                            <th>Hóa Đơn</th>
+                            <th>Đánh Giá</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableDanhSachCustomer">
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <header class="head-form mb-0">
+                        <h3 id="header-title" class="text-center mt-2">ADD PERSON</h3>
+                    </header>
+
+
+                    <!-- Body -->
+                    <div class="modal-body">
+
+                        <form role="form" id="fromList" name="fromList">
+                            <div class="form-group">
+                                <div class="input-group">
+
+                                    <select name="chucVu" class="form-control" id="chucvu" onchange="chonLoai()">
+                                        <option value="Select">Select</option>
+                                        <option value="Student">Student</option>
+                                        <option value="Staff">Staff</option>
+                                        <option value="Customer">Customer</option>
+                                    </select>
+                                </div>
+
+                                <span class="sp-thongbao" id="tbChucVu"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+
+                                    <input type="text" name="maSo" id="tknv" class="form-control input-sm"
+                                        placeholder="ID">
+                                </div>
+
+                                <span class="sp-thongbao" id="tbTKNV"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group">
+
+                                    <input type="name" name="name" id="name" class="form-control input-sm"
+                                        placeholder="Họ và tên">
+                                </div>
+                                <span class="sp-thongbao" id="tbTen"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group">
+
+                                    <input type="email" name="email" id="email" class="form-control input-sm"
+                                        placeholder="Email">
+                                </div>
+
+                                <span class="sp-thongbao" id="tbEmail"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group">
+
+                                    <input type="text" name="address" id="address" class="form-control input-sm"
+                                        placeholder="Address">
+                                </div>
+                                <span class="sp-thongbao" id="tbAddress"></span>
+                            </div>
+
+                            <div class="form-group diem_Toan">
+                                <div class="input-group">
+
+                                    <input type="text" name="diemToan" id="diemToan" class="form-control"
+                                        placeholder="Điểm Toán">
+                                </div>
+
+                                <span class="sp-thongbao" id="tbDiemToan"></span>
+                            </div>
+
+                            <div class="form-group diem_Ly">
+                                <div class="input-group">
+
+                                    <input type="text" name="diemLy" id="diemLy" class="form-control input-sm"
+                                        placeholder="Điểm Lý">
+                                </div>
+                                <span class="sp-thongbao" id="tbDiemLY"></span>
+                            </div>
+
+                            <div class="form-group diem_Hoa">
+                                <div class="input-group">
+                                    <input type="text" name="diemHoa" id="diemHoa" class="form-control input-sm"
+                                        placeholder="Điểm Hóa">
+                                </div>
+                                <span class="sp-thongbao" id="tbdiemHoa"></span>
+                            </div>
+                            <div class="form-group luong_Ngay">
+                                <div class="input-group">
+                                    <input type="text" name="luongNgay" id="luongNgay" class="form-control input-sm"
+                                        placeholder="Lương 1 ngày">
+                                </div>
+                                <span class="sp-thongbao" id="tbluongNgay"></span>
+                            </div>
+                            <div class="form-group so_Ngay">
+                                <div class="input-group">
+                                    <input type="text" name="soNgay" id="soNgay" class="form-control input-sm"
+                                        placeholder="Số ngày làm">
+                                </div>
+                                <span class="sp-thongbao" id="tbsoNgay"></span>
+                            </div>
+                            <div class="form-group ten_Cty">
+                                <div class="input-group">
+                                    <input type="text" name="tenCty" id="tenCty" class="form-control input-sm"
+                                        placeholder="Tên Công Ty">
+                                </div>
+                                <span class="sp-thongbao" id="tbtenCty"></span>
+                            </div>
+                            <div class="form-group hoa_Don">
+                                <div class="input-group">
+                                    <input type="text" name="hoaDon" id="hoaDon" class="form-control input-sm"
+                                        placeholder="Hóa Đơn">
+                                </div>
+                                <span class="sp-thongbao" id="tbHoaDon"></span>
+                            </div>
+                            <div class="form-group danh_Gia">
+                                <div class="input-group">
+                                    <textarea name="danhGia" id="danhGia" style="width: 100%;"
+                                        placeholder="Đánh Giá"></textarea>
+                                </div>
+                                <span class="sp-thongbao" id="tbDanhGia"></span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer" id="modal-footer">
+                        <button id="btnThemNV" type="button" class="btn btn-success">ADD PERSON</button>
+                        <button id="btnCapNhat" type="button" class="btn btn-success" data-dismiss="modal">UPDATE
+                            </button>
+                        <button id="btnDong" type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+        integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="../controller/main.js"></script>
+</body>
+
+</html>

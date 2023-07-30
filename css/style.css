@@ -1,0 +1,16 @@
+.diem_Toan,
+.diem_Ly,
+.diem_Hoa,
+.luong_Ngay,
+.so_Ngay,
+.ten_Cty,
+.hoa_Don,
+.danh_Gia {
+  display: none;
+}
+
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../img/pngtree-school-classroom-cartoon-background-picture-image_2251690.jpg);
+}/*# sourceMappingURL=style.css.map */
